@@ -1,5 +1,6 @@
 require("dotenv").config();
 import request from "request"
+const ACCESS_TOKEN = process.env.ACCESS_TOKEN
 
 let getHomePage = (req, res) => {
     return res.render("homePage.ejs");
@@ -141,7 +142,7 @@ function callSendAPI(sender_psid, response) {
     // Send the HTTP request to the Messenger Platform
     request({
         "uri": "https://graph.facebook.com/v2.6/me/messages",
-        "qs": { "access_token": process.env.ACCESS_TOKEN },
+        "qs": { "access_token": ACCESS_TOKEN },
         "method": "POST",
         "json": request_body
     }, (err, res, body) => {
@@ -153,10 +154,31 @@ function callSendAPI(sender_psid, response) {
     });
 }
 
+let setupProfile = (req, res) => {
+    // call profile facebook api
+    let request_body = {
+        "get_started": "GET_STARTED",
+        "whitelisted_domains": "https://test-app-tvts-in-heroku.herokuapp.com/"
+    }
 
+    // Send the HTTP request to the Messenger Platform
+    request({
+        "uri": `https://graph.facebook.com/v12.0/me/messenger_profile?access_token=${ACCESS_TOKEN}`,
+        "qs": { "access_token": ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+    }, (err, res, body) => {
+        if (!err) {
+            console.log('Setup user profile succeeds ')
+        } else {
+            console.error("Unable to Setup user profile:" + err);
+        }
+    });
+}
 
 module.exports = {
     getHomePage: getHomePage,
     getWebhook: getWebhook,
     postWebhook: postWebhook,
+    setupProfile: setupProfile,
 }
