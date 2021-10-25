@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 let getHomePage = (req, res) => {
-    return res.render("homepage.ejs");
+    return res.render("homePage.ejs");
 };
 
 let getWebhook = (req, res) => {
