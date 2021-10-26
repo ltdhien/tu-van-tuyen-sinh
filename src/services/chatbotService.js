@@ -28,12 +28,12 @@ let callSendAPI = (response) => {
 }
 
 let handleGetStarted = () => {
-    return Promise(async(resolve, reject) => {
+    return Promise(async (resolve, reject) => {
         try {
             let response = {
                 "text": "OK. Xin chào mừng bạn ABC đến với tư vấn tuyển sinh trường Đại học Cần Thơ"
             }
-            await this.callSendAPI(response);
+            await allSendAPI(response);
             resolve('done');
         } catch (e) {
             reject(e);
