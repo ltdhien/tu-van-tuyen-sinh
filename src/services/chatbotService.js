@@ -103,7 +103,7 @@ let sendGetStartedTemplate = () => {
             }
         }
     }
-    return ``;
+    return response;
 }
 
 module.exports = {
