@@ -36,7 +36,7 @@ let getUserName = (sender_psid) => {
             "method": "GET",
         }, (err, res, body) => {
             if (!err) {
-                body = JSON.parse(res);
+                body = JSON.parse(body);
                 let username = `${body.first_name} ${body.last_name}`;
                 resolve(username);
             } else {
