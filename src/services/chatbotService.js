@@ -3,7 +3,7 @@ import request from "request";
 
 const ACCESS_TOKEN = process.env.ACCESS_TOKEN
 
-let callSendAPI = () => {
+let callSendAPI = (response) => {
     // Construct the message body
     let request_body = {
         "recipient": {
@@ -28,7 +28,17 @@ let callSendAPI = () => {
 }
 
 let handleGetStarted = () => {
-
+    return Promise(async (resolve, reject) => {
+        try {
+            let response = {
+                "text": "OK. Xin chào mừng bạn ABC đến với tư vấn tuyển sinh trường Đại học Cần Thơ"
+            }
+            await this.callSendAPI(response);
+            resolve('done');
+        } catch (e) {
+            reject(e);
+        }
+    })
 }
 
 module.exports = {
