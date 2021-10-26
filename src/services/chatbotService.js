@@ -41,6 +41,7 @@ let handleGetStarted = () => {
     })
 }
 
+
 module.exports = {
-    handleGetStarted:handleGetStarted,
+    handleGetStarted: handleGetStarted,
 }

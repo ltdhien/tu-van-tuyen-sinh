@@ -121,7 +121,7 @@ async function handlePostback(sender_psid, received_postback) {
     let payload = received_postback.payload;
 
     // Set the response based on the postback payload
-    switch(payload) {
+    switch (payload) {
         case 'yes': 
             response = {"text": "Thanks!"}
             break;
@@ -135,7 +135,7 @@ async function handlePostback(sender_psid, received_postback) {
             response = { "text": `Opp! I don't know response with postback ${payload}` }
     }
     // Send the message to acknowledge the postback
-    callSendAPI(sender_psid, response);
+    //callSendAPI(sender_psid, response);
 }
 
 // Sends response messages via the Send API
