@@ -28,7 +28,7 @@ let callSendAPI = (sender_psid, response) => {
 }
 
 let handleGetStarted = (sender_psid) => {
-    return Promise(async (resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         try {
             let response = {
                 "text": "OK. Xin chào mừng bạn ABC đến với tư vấn tuyển sinh trường Đại học Cần Thơ"
