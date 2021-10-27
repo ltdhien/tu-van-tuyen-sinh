@@ -79,8 +79,8 @@ let sendGetStartedTemplate = () => {
             "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": "Xin chào bạn đến với tư vấn tuyển sinh của Hiền",
-                    "subtitle": "Dưới đây là các lựa chọn của tư vấn",
+                    "title": "Bạn cần tư vấn những gì?",
+                    "subtitle": "Dưới đây là các lựa chọn cho bạn ",
                     "image_url": ImageGetStarted,
                     "buttons": [
                         {
