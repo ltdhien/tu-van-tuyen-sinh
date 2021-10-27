@@ -132,7 +132,15 @@ async function handlePostback(sender_psid, received_postback) {
         case 'GET_STARTED':
             await chatbotService.handleGetStarted(sender_psid);
             break;
-
+        case 'ADMISSION_SCORE':
+            await chatbotService.handleSendAdmissionScore(sender_psid);
+            break;
+        case 'MAJOR':
+            await chatbotService.handleSendMajor(sender_psid);
+            break;
+        case 'TARGET':
+            await chatbotService.handleSendTarget(sender_psid);
+            break;
         default:
             response = { "text": `Opp! I don't know response with postback ${payload}` }
     }

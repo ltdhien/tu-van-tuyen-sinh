@@ -56,7 +56,7 @@ let handleGetStarted = (sender_psid) => {
             let response1 = {
                 "text": `Xin chào mừng bạn ${username} đến với tư vấn tuyển sinh trường Đại học Cần Thơ`
             }
-            let response2 = sendGetStartedTemplate();
+            let response2 = getStartedTemplate();
             //send message
             await callSendAPI(sender_psid, response1);
 
@@ -72,7 +72,7 @@ let handleGetStarted = (sender_psid) => {
     })
 }
 
-let sendGetStartedTemplate = () => {
+let getStartedTemplate = () => {
     let response = {
         "attachment": {
             "type": "template",
@@ -106,7 +106,96 @@ let sendGetStartedTemplate = () => {
     return response;
 }
 
+let handleSendAdmissionScore = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response1 = getAdmissionScoreTemplate();
+            //send message
+            await callSendAPI(sender_psid, response1);
+
+            resolve('done');
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+let getAdmissionScoreTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                    "title": "Điểm tuyển sinh ",
+                    "subtitle": "Bạn cần xem điểm của ngành nào? ",
+                    "image_url": ImageGetStarted,
+                    "buttons": [
+                        {
+                            "type": "postback",
+                            "title": "Ngành Công Nghệ Thông Tin",
+                            "payload": "IT_SCORE",
+                        },
+                        
+                        {
+                            "type": "postback",
+                            "title": "Ngành Công Nghệ Sinh Học",
+                            "payload": "BIOTECHNOLOGY_SCORE",
+                        }
+                    ],
+                    },
+                    {
+                        "title": "Ngành tuyển sinh",
+                        "subtitle": "Bạn cần biết cụ thể những ngành nào? ",
+                        "image_url": ImageGetStarted,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Ngành Công Nghệ Thông Tin",
+                                "payload": "IT_SCORE",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Ngành Công Nghệ Sinh Học",
+                                "payload": "BIOTECHNOLOGY_SCORE",
+                            }
+                            
+                        ],
+                    }, {
+                        "title": "Chỉ tiêu",
+                        "subtitle": "Bạn cần biết chỉ tiêu của ngành nào? ",
+                        "image_url": ImageGetStarted,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Ngành Công Nghệ Thông Tin",
+                                "payload": "IT_SCORE",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Ngành Công Nghệ Sinh Học",
+                                "payload": "BIOTECHNOLOGY_SCORE",
+                            }
+                        ],
+                    }
+                ]
+            }
+        }
+    }
+    return response;
+}
+
+let handleSendMajor = (sender_psid) => {
+
+}
+
+let handleSendTarget = (sender_psid) => {
+
+}
 module.exports = {
     handleGetStarted: handleGetStarted,
-    getUserName: getUserName,
+    handleSendAdmissionScore: handleSendAdmissionScore,
+    handleSendMajor: handleSendMajor,
+    handleSendTarget: handleSendTarget,
 }
