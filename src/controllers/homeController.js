@@ -128,9 +128,11 @@ async function handlePostback(sender_psid, received_postback) {
         case 'no':
             response = { "text": "Oops, try sending another image." }
             break;
+        case 'RESTART':
         case 'GET_STARTED':
             await chatbotService.handleGetStarted(sender_psid);
             break;
+
         default:
             response = { "text": `Opp! I don't know response with postback ${payload}` }
     }
@@ -189,9 +191,52 @@ let setupProfile = async (req, res) => {
 
 }
 
+let setupPersistentMenu = async (req, res) => {
+    // call profile facebook api
+    let request_body = {
+        "persistent_menu": [
+            {
+                "locale": "default",
+                "composer_input_disabled": false,
+                "call_to_actions": [
+                    {
+                        "type": "postback",
+                        "title": "Khởi động lại bot",
+                        "payload": "RESTART"
+                    },
+                    {
+                        "type": "web_url",
+                        "title": "Web site trường",
+                        "url": "https://ctu.edu.vn/",
+                        "webview_height_ratio": "full"
+                    }
+                ]
+            }
+        ]
+    }
+
+    // Send the HTTP request to the Messenger Platform
+    await request({
+        "uri": `https://graph.facebook.com/v12.0/me/messenger_profile?access_token=${ACCESS_TOKEN}`,
+        "qs": { "access_token": ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+    }, (err, res, body) => {
+        console.log(body)
+        if (!err) {
+            console.log('Setup persistent menu succeeds! ')
+        } else {
+            console.error("Unable to Setup user profile:" + err);
+        }
+    });
+
+    return res.send("Setup persistent menu succeeds!");
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getWebhook: getWebhook,
     postWebhook: postWebhook,
     setupProfile: setupProfile,
+    setupPersistentMenu: setupPersistentMenu,
 }
