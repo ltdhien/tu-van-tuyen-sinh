@@ -90,15 +90,15 @@ let getStartedTemplate = () => {
                         },
                         {
                             "type": "postback",
-                            "title": "NGÀNH TUYỂN SINH",
-                            "payload": "MAJOR",
+                            "title": "ĐỊA CHỈ TRƯỜNG",
+                            "payload": "ADDRESS",
                         },
                         {
                             "type": "postback",
                             "title": "LỰA CHỌN KHÁC",
                             "payload": "OTHERS",
                         }
-                        
+
                     ],
                 }]
             }
@@ -129,21 +129,21 @@ let getAdmissionScoreTemplate = () => {
                 "template_type": "generic",
                 "elements": [
                     {
-                    "title": "ĐIỂM TUYỂN SINH ",
-                    "subtitle": "Bạn có thể xem điểm trên website chúng tôi cung cấp dưới đây ",
-                    "image_url": ImageGetStarted,
-                    "buttons": [
-                        {
-                            "type": "web_url",
-                            "title": "ĐIỂM TRÊN WEBSITE",
-                            "url": "https://bit.ly/nganh-va-diem-tuyen-sinh2021",
-                        },                        
-                        {
-                            "type": "postback",
-                            "title": "QUAY LẠI BẮT ĐẦU",
-                            "payload": "GET_STARTED",
-                        }
-                    ],
+                        "title": "ĐIỂM TUYỂN SINH ",
+                        "subtitle": "Bạn có thể xem điểm trên website chúng tôi cung cấp dưới đây ",
+                        "image_url": ImageGetStarted,
+                        "buttons": [
+                            {
+                                "type": "web_url",
+                                "title": "ĐIỂM TRÊN WEBSITE",
+                                "url": "https://bit.ly/nganh-va-diem-tuyen-sinh2021",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "QUAY LẠI BẮT ĐẦU",
+                                "payload": "GET_STARTED",
+                            }
+                        ],
                     }
                 ]
             }
@@ -160,22 +160,22 @@ let handleSendMajor = (sender_psid) => {
                 "template_type": "generic",
                 "elements": [
                     {
-                    "title": "Điểm tuyển sinh ",
-                    "subtitle": "Bạn cần xem điểm của ngành nào? ",
-                    "image_url": ImageGetStarted,
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "Ngành Công Nghệ Thông Tin",
-                            "payload": "IT_SCORE",
-                        },
-                        
-                        {
-                            "type": "postback",
-                            "title": "Ngành Công Nghệ Sinh Học",
-                            "payload": "BIOTECHNOLOGY_SCORE",
-                        }
-                    ],
+                        "title": "Điểm tuyển sinh ",
+                        "subtitle": "Bạn cần xem điểm của ngành nào? ",
+                        "image_url": ImageGetStarted,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Ngành Công Nghệ Thông Tin",
+                                "payload": "IT_SCORE",
+                            },
+
+                            {
+                                "type": "postback",
+                                "title": "Ngành Công Nghệ Sinh Học",
+                                "payload": "BIOTECHNOLOGY_SCORE",
+                            }
+                        ],
                     },
                     {
                         "title": "Ngành tuyển sinh",
@@ -192,7 +192,7 @@ let handleSendMajor = (sender_psid) => {
                                 "title": "Ngành Công Nghệ Sinh Học",
                                 "payload": "BIOTECHNOLOGY_SCORE",
                             }
-                            
+
                         ],
                     }, {
                         "title": "OTHER",
@@ -200,35 +200,35 @@ let handleSendMajor = (sender_psid) => {
                         "image_url": ImageGetStarted,
                         "buttons": [
                             // {
-                        //     "type": "postback",
-                        //     "title": "CƠ SỞ VẬT CHẤT",
-                        //     "payload": "INFRASTRUCTURE",
-                        // },
-                        // {
-                        //     "type": "postback",
-                        //     "title": "THỜI GIAN ĐÀO TẠO",
-                        //     "payload": "TRAINING",
-                        // },
-                        // {
-                        //     "type": "postback",
-                        //     "title": "MÔN HỌC",
-                        //     "payload": "SUBJECTS",
-                        // },
-                        {
-                            "type": "postback",
-                            "title": "MẠNG XÃ HỘI",
-                            "payload": "MEDIA",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "HỆ THỐNG HỖ TRỢ",
-                            "payload": "ONLINE_SYSTEM",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "ĐỊA CHỈ",
-                            "payload": "ADDRESS",
-                        }
+                            //     "type": "postback",
+                            //     "title": "CƠ SỞ VẬT CHẤT",
+                            //     "payload": "INFRASTRUCTURE",
+                            // },
+                            // {
+                            //     "type": "postback",
+                            //     "title": "THỜI GIAN ĐÀO TẠO",
+                            //     "payload": "TRAINING",
+                            // },
+                            // {
+                            //     "type": "postback",
+                            //     "title": "MÔN HỌC",
+                            //     "payload": "SUBJECTS",
+                            // },
+                            {
+                                "type": "postback",
+                                "title": "MẠNG XÃ HỘI",
+                                "payload": "MEDIA",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "HỆ THỐNG HỖ TRỢ",
+                                "payload": "ONLINE_SYSTEM",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "ĐỊA CHỈ",
+                                "payload": "ADDRESS",
+                            }
                         ],
                     }
                 ]
@@ -238,13 +238,59 @@ let handleSendMajor = (sender_psid) => {
     return response;
 }
 
-let handleSendTarget = (sender_psid) => {
+let handleSendAddress = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response = getAddressTemplate();
+            //send message
+            await callSendAPI(sender_psid, response);
 
+            resolve('done');
+        } catch (e) {
+            reject(e);
+        }
+    })
 }
+
+let getAddressTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": "ĐỊA CHỈ KHU I",
+                        "subtitle": "Số 411 Đường 30/4, P.Hưng Lợi, Q.Ninh Kiều, TP.Cần Thơ  ",
+                        "image_url": ImageGetStarted,
+                    },
+                    {
+                        "title": "ĐỊA CHỈ KHU II",
+                        "subtitle": "Đường 3/2, P.Xuân Khánh, Q.Ninh Kiều, TP.Cần Thơ ",
+                        "image_url": ImageGetStarted,
+                    },
+                    {
+                        "title": "ĐỊA CHỈ KHU III",
+                        "subtitle": "Số 1 Đường Lý Tự Trọng, Q.Ninh Kiều, TP.Cần Thơ ",
+                        "image_url": ImageGetStarted,
+                    },
+                    {
+                        "title": "ĐỊA CHỈ KHU HÒA AN",
+                        "subtitle": "Số 554, Quốc lộ 61, ấp Hòa Đức, xã Hòa An, huyện Phụng Hiệp, tỉnh Hậu Giang ",
+                        "image_url": ImageGetStarted,
+                    }
+                ]
+            }
+        }
+    }
+    return response;
+}
+
+
 
 module.exports = {
     handleGetStarted: handleGetStarted,
     handleSendAdmissionScore: handleSendAdmissionScore,
     handleSendMajor: handleSendMajor,
-    handleSendTarget: handleSendTarget,
+    handleSendAddress: handleSendAddress,
 }
