@@ -93,36 +93,6 @@ let getStartedTemplate = () => {
                             "title": "NGÀNH TUYỂN SINH",
                             "payload": "MAJOR",
                         },
-                        // {
-                        //     "type": "postback",
-                        //     "title": "CƠ SỞ VẬT CHẤT",
-                        //     "payload": "INFRASTRUCTURE",
-                        // },
-                        // {
-                        //     "type": "postback",
-                        //     "title": "THỜI GIAN ĐÀO TẠO",
-                        //     "payload": "TRAINING",
-                        // },
-                        // {
-                        //     "type": "postback",
-                        //     "title": "MÔN HỌC",
-                        //     "payload": "SUBJECTS",
-                        // },
-                        // {
-                        //     "type": "postback",
-                        //     "title": "MẠNG XÃ HỘI",
-                        //     "payload": "MEDIA",
-                        // },
-                        // {
-                        //     "type": "postback",
-                        //     "title": "HỆ THỐNG HỖ TRỢ",
-                        //     "payload": "ONLINE_SYSTEM",
-                        // },
-                        // {
-                        //     "type": "postback",
-                        //     "title": "ĐỊA CHỈ",
-                        //     "payload": "ADDRESS",
-                        // }
                         {
                             "type": "postback",
                             "title": "LỰA CHỌN KHÁC",
@@ -194,20 +164,40 @@ let getAdmissionScoreTemplate = () => {
                             
                         ],
                     }, {
-                        "title": "Chỉ tiêu",
+                        "title": "OTHER",
                         "subtitle": "Bạn cần biết chỉ tiêu của ngành nào? ",
                         "image_url": ImageGetStarted,
                         "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Ngành Công Nghệ Thông Tin",
-                                "payload": "IT_SCORE",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "Ngành Công Nghệ Sinh Học",
-                                "payload": "BIOTECHNOLOGY_SCORE",
-                            }
+                            // {
+                        //     "type": "postback",
+                        //     "title": "CƠ SỞ VẬT CHẤT",
+                        //     "payload": "INFRASTRUCTURE",
+                        // },
+                        // {
+                        //     "type": "postback",
+                        //     "title": "THỜI GIAN ĐÀO TẠO",
+                        //     "payload": "TRAINING",
+                        // },
+                        // {
+                        //     "type": "postback",
+                        //     "title": "MÔN HỌC",
+                        //     "payload": "SUBJECTS",
+                        // },
+                        {
+                            "type": "postback",
+                            "title": "MẠNG XÃ HỘI",
+                            "payload": "MEDIA",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "HỆ THỐNG HỖ TRỢ",
+                            "payload": "ONLINE_SYSTEM",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "ĐỊA CHỈ",
+                            "payload": "ADDRESS",
+                        }
                         ],
                     }
                 ]
