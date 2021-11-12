@@ -129,18 +129,18 @@ let getAdmissionScoreTemplate = () => {
                 "template_type": "generic",
                 "elements": [
                     {
-                    "title": "Điểm tuyển sinh ",
-                    "subtitle": "Bạn cần xem điểm của ngành nào? ",
+                    "title": "ĐIỂM TUYỂN SINH ",
+                    "subtitle": "Bạn có thể xem điểm trên website chúng tôi cung cấp dưới đây ",
                     "image_url": ImageGetStarted,
                     "buttons": [
                         {
                             "type": "web_url",
-                            "title": "XEM ĐIỂM TRÊN WEB",
+                            "title": "ĐIỂM TRÊN WEBSITE",
                             "url": "https://bit.ly/nganh-va-diem-tuyen-sinh2021",
                         },                        
                         {
                             "type": "postback",
-                            "title": "QUAY LẠI",
+                            "title": "QUAY LẠI BẮT ĐẦU",
                             "payload": "GET_STARTED",
                         }
                     ],
@@ -241,6 +241,7 @@ let handleSendMajor = (sender_psid) => {
 let handleSendTarget = (sender_psid) => {
 
 }
+
 module.exports = {
     handleGetStarted: handleGetStarted,
     handleSendAdmissionScore: handleSendAdmissionScore,
