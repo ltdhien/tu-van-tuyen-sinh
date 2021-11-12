@@ -199,15 +199,16 @@ let getAddressTemplate = () => {
                         "subtitle": "Số 554, Quốc lộ 61, ấp Hòa Đức, xã Hòa An, huyện Phụng Hiệp, tỉnh Hậu Giang ",
                         "image_url": ImageUniversity4,
                     },
-                    // {
-                    //     "buttons": [
-                    //         {
-                    //             "type": "postback",
-                    //             "title": "QUAY LẠI BẮT ĐẦU",
-                    //             "payload": "GET_STARTED",
-                    //         }
-                    //     ]
-                    // }
+                    {
+                        "title" : "QUAY LẠI",
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "QUAY LẠI BẮT ĐẦU",
+                                "payload": "GET_STARTED",
+                            }
+                        ],
+                    }
                 ]
             }
         }
