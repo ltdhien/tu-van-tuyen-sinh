@@ -95,9 +95,35 @@ let getStartedTemplate = () => {
                         },
                         {
                             "type": "postback",
-                            "title": "Chỉ tiêu",
-                            "payload": "TARGET",
+                            "title": "Cơ sở vật chất",
+                            "payload": "INFRASTRUCTURE",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Thời gian đào tạo",
+                            "payload": "TRAINING",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Môn học",
+                            "payload": "SUBJECTS",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Mạng xã hội",
+                            "payload": "MEDIA",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Hệ thống hỗ trợ online",
+                            "payload": "ONLINE_SYSTEM",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Địa chỉ trường",
+                            "payload": "ADDRESS",
                         }
+                        
                     ],
                 }]
             }
