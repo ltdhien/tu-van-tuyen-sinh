@@ -201,6 +201,7 @@ let getAddressTemplate = () => {
                     },
                     {
                         "title" : "QUAY LẠI",
+                        "image_url": ImageUniversity2,
                         "buttons": [
                             {
                                 "type": "postback",
