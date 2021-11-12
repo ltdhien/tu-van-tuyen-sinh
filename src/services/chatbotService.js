@@ -93,11 +93,11 @@ let getStartedTemplate = () => {
                             "title": "NGÀNH TUYỂN SINH",
                             "payload": "MAJOR",
                         },
-                        // {
-                        //     "type": "postback",
-                        //     "title": "CƠ SỞ VẬT CHẤT",
-                        //     "payload": "INFRASTRUCTURE",
-                        // },
+                        {
+                            "type": "postback",
+                            "title": "CƠ SỞ VẬT CHẤT",
+                            "payload": "INFRASTRUCTURE",
+                        },
                         // {
                         //     "type": "postback",
                         //     "title": "THỜI GIAN ĐÀO TẠO",
