@@ -93,11 +93,11 @@ let getStartedTemplate = () => {
                             "title": "NGÀNH TUYỂN SINH",
                             "payload": "MAJOR",
                         },
-                        {
-                            "type": "postback",
-                            "title": "CƠ SỞ VẬT CHẤT",
-                            "payload": "INFRASTRUCTURE",
-                        },
+                        // {
+                        //     "type": "postback",
+                        //     "title": "CƠ SỞ VẬT CHẤT",
+                        //     "payload": "INFRASTRUCTURE",
+                        // },
                         // {
                         //     "type": "postback",
                         //     "title": "THỜI GIAN ĐÀO TẠO",
@@ -118,10 +118,15 @@ let getStartedTemplate = () => {
                         //     "title": "HỆ THỐNG HỖ TRỢ",
                         //     "payload": "ONLINE_SYSTEM",
                         // },
+                        // {
+                        //     "type": "postback",
+                        //     "title": "ĐỊA CHỈ",
+                        //     "payload": "ADDRESS",
+                        // }
                         {
                             "type": "postback",
-                            "title": "ĐỊA CHỈ",
-                            "payload": "ADDRESS",
+                            "title": "LỰA CHỌN KHÁC",
+                            "payload": "OTHERS",
                         }
                         
                     ],
