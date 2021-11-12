@@ -54,7 +54,7 @@ let handleGetStarted = (sender_psid) => {
         try {
             let username = await getUserName(sender_psid);
             let response1 = {
-                "text": `Xin chào .Xin chào mừng bạn ${username} đến với tư vấn tuyển sinh trường Đại học Cần Thơ`
+                "text": `Xin chào mừng bạn ${username} đến với tư vấn tuyển sinh trường Đại học Cần Thơ`
             }
             let response2 = getStartedTemplate();
             //send message
@@ -85,42 +85,42 @@ let getStartedTemplate = () => {
                     "buttons": [
                         {
                             "type": "postback",
-                            "title": "Điểm tuyển sinh",
+                            "title": "ĐIỂM TUYỂN SINH",
                             "payload": "ADMISSION_SCORE",
                         },
                         {
                             "type": "postback",
-                            "title": "Ngành tuyển sinh",
+                            "title": "NGÀNH TUYỂN SINH",
                             "payload": "MAJOR",
                         },
                         {
                             "type": "postback",
-                            "title": "Cơ sở vật chất",
+                            "title": "CƠ SỞ VẬT CHẤT",
                             "payload": "INFRASTRUCTURE",
                         },
                         {
                             "type": "postback",
-                            "title": "Thời gian đào tạo",
+                            "title": "THỜI GIAN ĐÀO TẠO",
                             "payload": "TRAINING",
                         },
+                        // {
+                        //     "type": "postback",
+                        //     "title": "MÔN HỌC",
+                        //     "payload": "SUBJECTS",
+                        // },
+                        // {
+                        //     "type": "postback",
+                        //     "title": "MẠNG XÃ HỘI",
+                        //     "payload": "MEDIA",
+                        // },
+                        // {
+                        //     "type": "postback",
+                        //     "title": "HỆ THỐNG HỖ TRỢ",
+                        //     "payload": "ONLINE_SYSTEM",
+                        // },
                         {
                             "type": "postback",
-                            "title": "Môn học",
-                            "payload": "SUBJECTS",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "Mạng xã hội",
-                            "payload": "MEDIA",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "Hệ thống hỗ trợ online",
-                            "payload": "ONLINE_SYSTEM",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "Địa chỉ trường",
+                            "title": "ĐỊA CHỈ",
                             "payload": "ADDRESS",
                         }
                         
