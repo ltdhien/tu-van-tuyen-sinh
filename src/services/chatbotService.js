@@ -5,6 +5,10 @@ import request from "request";
 const ACCESS_TOKEN = process.env.ACCESS_TOKEN
 
 const ImageGetStarted = `https://bit.ly/get-started-chatbot-by-hien`
+const ImageUniversity1 = `https://bit.ly/hinh-anh-khu-1`
+const ImageUniversity2 = `https://bit.ly/get-started-chatbot-by-hien`
+const ImageUniversity3 = `https://bit.ly/hinh-anh-khu-3`
+const ImageUniversity4 = `https://bit.ly/hinh-anh-khu-hoa-an`
 
 let callSendAPI = (sender_psid, response) => {
     // Construct the message body
@@ -178,22 +182,22 @@ let getAddressTemplate = () => {
                     {
                         "title": "ĐỊA CHỈ KHU I",
                         "subtitle": "Số 411 Đường 30/4, P.Hưng Lợi, Q.Ninh Kiều, TP.Cần Thơ  ",
-                        "image_url": ImageGetStarted,
+                        "image_url": ImageUniversity1,
                     },
                     {
                         "title": "ĐỊA CHỈ KHU II",
                         "subtitle": "Đường 3/2, P.Xuân Khánh, Q.Ninh Kiều, TP.Cần Thơ ",
-                        "image_url": ImageGetStarted,
+                        "image_url": ImageUniversity2,
                     },
                     {
                         "title": "ĐỊA CHỈ KHU III",
                         "subtitle": "Số 1 Đường Lý Tự Trọng, Q.Ninh Kiều, TP.Cần Thơ ",
-                        "image_url": ImageGetStarted,
+                        "image_url": ImageUniversity3,
                     },
                     {
                         "title": "ĐỊA CHỈ KHU HÒA AN",
                         "subtitle": "Số 554, Quốc lộ 61, ấp Hòa Đức, xã Hòa An, huyện Phụng Hiệp, tỉnh Hậu Giang ",
-                        "image_url": ImageGetStarted,
+                        "image_url": ImageUniversity4,
                     }
                 ]
             }
