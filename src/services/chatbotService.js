@@ -134,6 +134,37 @@ let getAdmissionScoreTemplate = () => {
                     "image_url": ImageGetStarted,
                     "buttons": [
                         {
+                            "type": "web_url",
+                            "title": "XEM ĐIỂM TRÊN WEB",
+                            "url": "https://bit.ly/nganh-va-diem-tuyen-sinh2021",
+                        },                        
+                        {
+                            "type": "postback",
+                            "title": "QUAY LẠI",
+                            "payload": "GET_STARTED",
+                        }
+                    ],
+                    }
+                ]
+            }
+        }
+    }
+    return response;
+}
+
+let handleSendMajor = (sender_psid) => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                    "title": "Điểm tuyển sinh ",
+                    "subtitle": "Bạn cần xem điểm của ngành nào? ",
+                    "image_url": ImageGetStarted,
+                    "buttons": [
+                        {
                             "type": "postback",
                             "title": "Ngành Công Nghệ Thông Tin",
                             "payload": "IT_SCORE",
@@ -205,10 +236,6 @@ let getAdmissionScoreTemplate = () => {
         }
     }
     return response;
-}
-
-let handleSendMajor = (sender_psid) => {
-
 }
 
 let handleSendTarget = (sender_psid) => {
