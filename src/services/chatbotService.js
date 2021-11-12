@@ -152,91 +152,7 @@ let getAdmissionScoreTemplate = () => {
     return response;
 }
 
-let handleSendMajor = (sender_psid) => {
-    let response = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [
-                    {
-                        "title": "Điểm tuyển sinh ",
-                        "subtitle": "Bạn cần xem điểm của ngành nào? ",
-                        "image_url": ImageGetStarted,
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Ngành Công Nghệ Thông Tin",
-                                "payload": "IT_SCORE",
-                            },
 
-                            {
-                                "type": "postback",
-                                "title": "Ngành Công Nghệ Sinh Học",
-                                "payload": "BIOTECHNOLOGY_SCORE",
-                            }
-                        ],
-                    },
-                    {
-                        "title": "Ngành tuyển sinh",
-                        "subtitle": "Bạn cần biết cụ thể những ngành nào? ",
-                        "image_url": ImageGetStarted,
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Ngành Công Nghệ Thông Tin",
-                                "payload": "IT_SCORE",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "Ngành Công Nghệ Sinh Học",
-                                "payload": "BIOTECHNOLOGY_SCORE",
-                            }
-
-                        ],
-                    }, {
-                        "title": "OTHER",
-                        "subtitle": "Bạn cần biết chỉ tiêu của ngành nào? ",
-                        "image_url": ImageGetStarted,
-                        "buttons": [
-                            // {
-                            //     "type": "postback",
-                            //     "title": "CƠ SỞ VẬT CHẤT",
-                            //     "payload": "INFRASTRUCTURE",
-                            // },
-                            // {
-                            //     "type": "postback",
-                            //     "title": "THỜI GIAN ĐÀO TẠO",
-                            //     "payload": "TRAINING",
-                            // },
-                            // {
-                            //     "type": "postback",
-                            //     "title": "MÔN HỌC",
-                            //     "payload": "SUBJECTS",
-                            // },
-                            {
-                                "type": "postback",
-                                "title": "MẠNG XÃ HỘI",
-                                "payload": "MEDIA",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "HỆ THỐNG HỖ TRỢ",
-                                "payload": "ONLINE_SYSTEM",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "ĐỊA CHỈ",
-                                "payload": "ADDRESS",
-                            }
-                        ],
-                    }
-                ]
-            }
-        }
-    }
-    return response;
-}
 
 let handleSendAddress = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
@@ -286,11 +202,24 @@ let getAddressTemplate = () => {
     return response;
 }
 
+let handleSendOthers = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response = getAddressTemplate();
+            //send message
+            await callSendAPI(sender_psid, response);
+
+            resolve('done');
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
 
 
 module.exports = {
     handleGetStarted: handleGetStarted,
     handleSendAdmissionScore: handleSendAdmissionScore,
-    handleSendMajor: handleSendMajor,
+    handleSendOthers: handleSendOthers,
     handleSendAddress: handleSendAddress,
 }
