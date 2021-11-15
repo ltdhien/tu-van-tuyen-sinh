@@ -65,8 +65,27 @@ let postWebhook = (req, res) => {
 }
 
 
+let getFacebookUsername = (sender_psid) => {
+    // Send the HTTP request to the Messenger Platform
+    return new Promise((resolve, reject) => {
+        request({
+            "uri": `https://graph.facebook.com/${sender_psid}?fields=first_name,last_name,profile_pic&access_token=${ACCESS_TOKEN}`,
+            "method": "GET",
+        }, (err, res, body) => {
+            if (!err) {
+                body = JSON.parse(body);
+                let username = `${body.first_name} ${body.last_name}`;
+                resolve(username);
+            } else {
+                console.error("Unable to send message:" + err);
+                reject(err);
+            }
+        });
+    })
+}
+
 // Handles messaging_postbacks events
-async function handlePostback(sender_psid, received_postback) {
+function handlePostback(sender_psid, received_postback) {
     let response;
     //Get payload for Postback
     let payload = received_postback.payload;
@@ -107,7 +126,7 @@ async function handlePostback(sender_psid, received_postback) {
 let setupProfile = async (req, res) => {
     // call profile facebook api
     let request_body = {
-        "get_started": {"payload": "GET_STARTED"},
+        "get_started": { "payload": "GET_STARTED" },
         "whitelisted_domains": ["https://test-app-tvts-in-heroku.herokuapp.com/"]
     }
 
@@ -141,7 +160,7 @@ let setupPersistentMenu = async (req, res) => {
                     {
                         "type": "postback",
                         "title": "Khởi động lại bot",
-                        "payload": "RESTART"
+                        "payload": "RESTART_CONVERSATION"
                     },
                     {
                         "type": "web_url",
@@ -172,24 +191,6 @@ let setupPersistentMenu = async (req, res) => {
     return res.send("Setup persistent menu succeeds!");
 }
 
-let getFacebookUsername = (sender_psid) => {
-    // Send the HTTP request to the Messenger Platform
-    return new Promise((resolve, reject) => {
-        request({
-            "uri": `https://graph.facebook.com/${sender_psid}?fields=first_name,last_name,profile_pic&access_token=${ACCESS_TOKEN}`,
-            "method": "GET",
-        }, (err, res, body) => {
-            if (!err) {
-                body = JSON.parse(body);
-                let username = `${body.first_name} ${body.last_name}`;
-                resolve(username);
-            } else {
-                console.error("Unable to send message:" + err);
-                reject(err);
-            }
-        });
-    })
-}
 
 let sendWelcomeNewClient = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
@@ -214,87 +215,77 @@ let sendWelcomeNewClient = (sender_psid) => {
 };
 
 let sendMainContent = (sender_psid) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let response = {
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "generic",
-                        "elements": [
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": "Đăng ký xét tuyển",
+                        "subtitle": "Bạn có đang thắc mắc về việc đăng ký xét tuyển ở trường CTU?",
+                        "image_url": ImageMainContent,
+                        "buttons": [
                             {
+                                "type": "postback",
                                 "title": "Đăng ký xét tuyển",
-                                "subtitle": "Bạn có đang thắc mắc về việc đăng ký xét tuyển ở trường CTU?",
-								"image_url": ImageMainContent,
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "Đăng ký xét tuyển",
-                                        "payload": "REGISTER_ADMISSIONS"
-                                    }
-                                ]
-                            },
+                                "payload": "REGISTER_ADMISSIONS"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Phương thức tuyển sinh",
+                        "subtitle": "Bạn có phải đang không biết phương thức tuyển sinh đầu vào lần này như thế nào?",
+                        "image_url": ImageMainContent,
+                        "buttons": [
                             {
+                                "type": "postback",
+                                "title": "Ngành tuyển sinh",
+                                "payload": "MAJORS"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Phương thức tuyển sinh",
+                        "subtitle": "Bạn có phải đang không biết phương thức tuyển sinh đầu vào lần này như thế nào?",
+                        "image_url": ImageMainContent,
+                        "buttons": [
+                            {
+                                "type": "postback",
                                 "title": "Phương thức tuyển sinh",
-                                "subtitle": "Bạn có phải đang không biết phương thức tuyển sinh đầu vào lần này như thế nào?",
-								"image_url": ImageMainContent,
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "Ngành tuyển sinh",
-                                        "payload": "MAJORS"
-                                    }
-                                ]
-                            },
+                                "payload": "RECRUITMENT_METHOD"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Câu hỏi khác",
+                        "subtitle": "Chương trình chất lượng cao khác gì so với chương trình đại trà?",
+                        "image_url": ImageMainContent,
+                        "buttons": [
                             {
-                                "title": "Phương thức tuyển sinh",
-                                "subtitle": "Bạn có phải đang không biết phương thức tuyển sinh đầu vào lần này như thế nào?",
-								"image_url": ImageMainContent,
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "Phương thức tuyển sinh",
-                                        "payload": "RECRUITMENT_METHOD"
-                                    }
-                                ]
-                            },
+                                "type": "postback",
+                                "title": "Chi tiết",
+                                "payload": "COMPARE"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Câu hỏi khác",
+                        "subtitle": "Chính sách học bổng của trường như thế nào?",
+                        "image_url": ImageMainContent,
+                        "buttons": [
                             {
-                                "title": "Câu hỏi khác",
-                                "subtitle": "Chương trình chất lượng cao khác gì so với chương trình đại trà?",
-								"image_url": ImageMainContent,
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "Chi tiết",
-                                        "payload": "COMPARE"
-                                    }
-                                ]
-                            },
-                            {
-                                "title": "Câu hỏi khác",
-                                "subtitle": "Chính sách học bổng của trường như thế nào?",
-								"image_url": ImageMainContent,
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "Chi tiết",
-                                        "payload": "SCHOLARSHIP_POLICY"
-                                    }
-                                ]
+                                "type": "postback",
+                                "title": "Chi tiết",
+                                "payload": "SCHOLARSHIP_POLICY"
                             }
                         ]
                     }
-                }
+                ]
             }
-
-            await sendTypingOn(sender_psid)
-            await sendMessage(sender_psid, response);
-
-            resolve('done');
-        } catch (e) {
-            reject(e);
         }
-    });
+    }
+    return response;
 }
 
 let sendRegisterAdmissions = (sender_psid) => {
@@ -314,7 +305,7 @@ let sendRegisterAdmissions = (sender_psid) => {
                             {
                                 "title": "Bạn có muốn giải đáp những câu hỏi khác?",
                                 "subtitle": "Nhấn quay lại để có thể giải đáp những thắc mắc của bạn",
-								"image_url": ImageMainContent,
+                                "image_url": ImageMainContent,
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -369,7 +360,7 @@ let sendRecruitmentMethod = (sender_psid) => {
                             {
                                 "title": "Phương thức 1",
                                 "subtitle": "Tuyển thẳng, ưu tiên xét tuyển",
-								"image_url": ImageMainContent,
+                                "image_url": ImageMainContent,
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -381,7 +372,7 @@ let sendRecruitmentMethod = (sender_psid) => {
                             {
                                 "title": "Phương thức 2",
                                 "subtitle": " Xét tuyển điểm Kỳ thi tốt nghiệp THPT",
-								"image_url": ImageMainContent,
+                                "image_url": ImageMainContent,
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -393,7 +384,7 @@ let sendRecruitmentMethod = (sender_psid) => {
                             {
                                 "title": "Phương thức 3",
                                 "subtitle": "Xét tuyển điểm học bạ THPT",
-								"image_url": ImageMainContent,
+                                "image_url": ImageMainContent,
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -405,7 +396,7 @@ let sendRecruitmentMethod = (sender_psid) => {
                             {
                                 "title": "Phương thức 4",
                                 "subtitle": "Xét tuyển vào ngành Sư phạm bằng điểm học bạ THPT",
-								"image_url": ImageMainContent,
+                                "image_url": ImageMainContent,
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -417,7 +408,7 @@ let sendRecruitmentMethod = (sender_psid) => {
                             {
                                 "title": "Phương thức 5",
                                 "subtitle": "Tuyển chọn vào chương trình tiên tiến và chất lượng cao",
-								"image_url": ImageMainContent,
+                                "image_url": ImageMainContent,
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -429,7 +420,7 @@ let sendRecruitmentMethod = (sender_psid) => {
                             {
                                 "title": "Phương thức 6",
                                 "subtitle": "Xét tuyển thẳng vào học Bồi dưỡng kiến thức",
-								"image_url": ImageMainContent,
+                                "image_url": ImageMainContent,
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -441,7 +432,7 @@ let sendRecruitmentMethod = (sender_psid) => {
                             {
                                 "title": "Câu hỏi",
                                 "subtitle": "Bạn đang thắc mắc những câu hỏi nào dưới đây?",
-								"image_url": ImageMainContent,
+                                "image_url": ImageMainContent,
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -480,14 +471,14 @@ let sendCompare = (sender_psid) => {
                             {
                                 "title": "Thông tin chi tiết",
                                 "subtitle": "Bạn có thể nhấn 'chi tiết' để tìm thêm thông tin hoặc quay lại",
-								"image_url": ImageMainContent,
+                                "image_url": ImageMainContent,
                                 "buttons": [
                                     {
                                         "type": "postback",
                                         "title": "Chi tiết",
                                         "url": "https://tuyensinh.ctu.edu.vn/dai-hoc-chinh-quy/chuong-trinh-chat-luong-cao.html"
                                     },
-									{
+                                    {
                                         "type": "postback",
                                         "title": "Quay lại",
                                         "payload": "MAIN_CONTENT"
@@ -643,7 +634,7 @@ let markMessageSeen = (sender_psid) => {
     });
 }
 
-function callSendAPI(sender_psid, response) {
+let callSendAPI = (sender_psid, response) => {
     // Construct the message body
     let request_body = {
         "recipient": {
