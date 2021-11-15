@@ -245,7 +245,11 @@ let getAddressTemplate = () => {
 let handleSendOthers = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let response = getSendOthers();
+            let response = {
+                "text": `Mỗi thí sinh được quyền đăng ký xét tuyển vào Trường bằng nhiều phương thức khác nhau, mỗi phương thức nộp 01 bộ hồ sơ riêng và không có sự ràng buộc nào giữa những nguyện vọng do thí sinh đăng ký trong các phương thức.
+				- Trường hợp đăng ký nhiều phương thức cùng trường hoặc khác trường (trong đó có phương thức 2): khi trúng tuyển và xác nhận nhập học trước khi phương thức 2 công bố kết quả thì thí sinh không được xét tuyển theo phương thức 2 nữa; ngược lại, nếu không trúng tuyển hoặc chưa xác nhận nhập học thì vẫn được xét tuyển ở phương thức 2.
+				- Nếu một phương thức có nhiều đợt xét tuyển thì điểm trúng tuyển của đợt sau không được thấp hơn điểm trúng tuyển của đợt xét tuyển trước.`
+            }
             //send message
             await callSendAPI(sender_psid, response);
 
@@ -255,23 +259,23 @@ let handleSendOthers = (sender_psid) => {
         }
     })
 }
-let getSendOthers = () => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let response = {
-                "text": `Mỗi thí sinh được quyền đăng ký xét tuyển vào Trường bằng nhiều phương thức khác nhau, mỗi phương thức nộp 01 bộ hồ sơ riêng và không có sự ràng buộc nào giữa những nguyện vọng do thí sinh đăng ký trong các phương thức.
-				- Trường hợp đăng ký nhiều phương thức cùng trường hoặc khác trường (trong đó có phương thức 2): khi trúng tuyển và xác nhận nhập học trước khi phương thức 2 công bố kết quả thì thí sinh không được xét tuyển theo phương thức 2 nữa; ngược lại, nếu không trúng tuyển hoặc chưa xác nhận nhập học thì vẫn được xét tuyển ở phương thức 2.
-				- Nếu một phương thức có nhiều đợt xét tuyển thì điểm trúng tuyển của đợt sau không được thấp hơn điểm trúng tuyển của đợt xét tuyển trước.`
-            }
+// let getSendOthers = () => {
+//     return new Promise(async (resolve, reject) => {
+//         try {
+//             let response = {
+//                 "text": `Mỗi thí sinh được quyền đăng ký xét tuyển vào Trường bằng nhiều phương thức khác nhau, mỗi phương thức nộp 01 bộ hồ sơ riêng và không có sự ràng buộc nào giữa những nguyện vọng do thí sinh đăng ký trong các phương thức.
+// 				- Trường hợp đăng ký nhiều phương thức cùng trường hoặc khác trường (trong đó có phương thức 2): khi trúng tuyển và xác nhận nhập học trước khi phương thức 2 công bố kết quả thì thí sinh không được xét tuyển theo phương thức 2 nữa; ngược lại, nếu không trúng tuyển hoặc chưa xác nhận nhập học thì vẫn được xét tuyển ở phương thức 2.
+// 				- Nếu một phương thức có nhiều đợt xét tuyển thì điểm trúng tuyển của đợt sau không được thấp hơn điểm trúng tuyển của đợt xét tuyển trước.`
+//             }
 
-            await callSendAPI(sender_psid, response);
+//             await callSendAPI(sender_psid, response);
 
-            resolve('done');
-        } catch (e) {
-            reject(e);
-        }
-    });
-}
+//             resolve('done');
+//         } catch (e) {
+//             reject(e);
+//         }
+//     });
+// }
 
 module.exports = {
     handleGetStarted: handleGetStarted,
