@@ -199,7 +199,7 @@ let sendWelcomeNewClient = (sender_psid) => {
             let response1 = {
                 "text": `Xin chào bạn ${username}. Mình là Chatbot tư vấn tuyển sinh của trường Đại học Cần Thơ. Bạn có thể hỏi mình bằng cách chọn "Câu hỏi" ở dưới`
             }
-            let response2 = sendMainContent(sender_psid);
+            let response2 = sendMainContent();
             //send welcome message
             await sendTypingOn(sender_psid)
             await sendMessage(sender_psid, response1);
@@ -214,7 +214,7 @@ let sendWelcomeNewClient = (sender_psid) => {
     });
 };
 
-let sendMainContent = (sender_psid) => {
+let sendMainContent = () => {
     let response = {
         "attachment": {
             "type": "template",
