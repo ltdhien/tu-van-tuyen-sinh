@@ -82,29 +82,54 @@ let getStartedTemplate = () => {
             "type": "template",
             "payload": {
                 "template_type": "generic",
-                "elements": [{
-                    "title": "Bạn cần tư vấn những gì?",
-                    "subtitle": "Dưới đây là các lựa chọn cho bạn ",
-                    "image_url": ImageGetStarted,
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "ĐIỂM TUYỂN SINH",
-                            "payload": "ADMISSION_SCORE",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "ĐỊA CHỈ TRƯỜNG",
-                            "payload": "ADDRESS",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "LỰA CHỌN KHÁC",
-                            "payload": "OTHERS",
-                        }
+                "elements": [
+                    {
+                        "title": "Bạn cần tư vấn những gì?",
+                        "subtitle": "Dưới đây là các lựa chọn cho bạn ",
+                        "image_url": ImageGetStarted,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "ĐIỂM TUYỂN SINH",
+                                "payload": "ADMISSION_SCORE",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "ĐỊA CHỈ TRƯỜNG",
+                                "payload": "ADDRESS",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "LỰA CHỌN KHÁC",
+                                "payload": "OTHERS",
+                            }
 
-                    ],
-                }]
+                        ],
+                    },
+                    {
+                        "title": "Bạn cần tư vấn những gì?",
+                        "subtitle": "Dưới đây là các lựa chọn cho bạn ",
+                        "image_url": ImageGetStarted,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "ĐIỂM TUYỂN SINH",
+                                "payload": "ADMISSION_SCORE",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "ĐỊA CHỈ TRƯỜNG",
+                                "payload": "ADDRESS",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "LỰA CHỌN KHÁC",
+                                "payload": "OTHERS",
+                            }
+
+                        ],
+                    }
+                ]
             }
         }
     }
