@@ -67,8 +67,6 @@ let sendWelcomeNewClient = (sender_psid) => {
             //send generic template message
             await callSendAPI(sender_psid, response2);
 
-
-
             resolve('done');
         } catch (e) {
             reject(e);
@@ -82,29 +80,68 @@ let sendMainContent = () => {
             "type": "template",
             "payload": {
                 "template_type": "generic",
-                "elements": [{
-                    "title": "Bạn cần tư vấn những gì?",
-                    "subtitle": "Dưới đây là các lựa chọn cho bạn ",
-                    "image_url": ImageGetStarted,
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "ĐIỂM TUYỂN SINH",
-                            "payload": "ADMISSION_SCORE",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "ĐỊA CHỈ TRƯỜNG",
-                            "payload": "ADDRESS",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "LỰA CHỌN KHÁC",
-                            "payload": "OTHERS",
-                        }
-
-                    ],
-                }]
+                "elements": [
+                    {
+                        "title": "Đăng ký xét tuyển",
+                        "subtitle": "Bạn có đang thắc mắc về việc đăng ký xét tuyển ở trường CTU?",
+                        "image_url": ImageMainContent,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Đăng ký xét tuyển",
+                                "payload": "REGISTER_ADMISSIONS"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Phương thức tuyển sinh",
+                        "subtitle": "Bạn có phải đang không biết phương thức tuyển sinh đầu vào lần này như thế nào?",
+                        "image_url": ImageMainContent,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Ngành tuyển sinh",
+                                "payload": "MAJORS"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Phương thức tuyển sinh",
+                        "subtitle": "Bạn có phải đang không biết phương thức tuyển sinh đầu vào lần này như thế nào?",
+                        "image_url": ImageMainContent,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Phương thức tuyển sinh",
+                                "payload": "RECRUITMENT_METHOD"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Câu hỏi khác",
+                        "subtitle": "Chương trình chất lượng cao khác gì so với chương trình đại trà?",
+                        "image_url": ImageMainContent,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Chi tiết",
+                                "payload": "COMPARE"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Câu hỏi khác",
+                        "subtitle": "Chính sách học bổng của trường như thế nào?",
+                        "image_url": ImageMainContent,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Chi tiết",
+                                "payload": "SCHOLARSHIP_POLICY"
+                            }
+                        ]
+                    }
+                ]
             }
         }
     }
