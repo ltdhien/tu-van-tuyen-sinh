@@ -122,24 +122,26 @@ async function handlePostback(sender_psid, received_postback) {
 
     // Set the response based on the postback payload
     switch (payload) {
-        case 'yes': 
-            response = {"text": "Thanks!"}
-            break;
-        case 'no':
-            response = { "text": "Oops, try sending another image." }
-            break;
         case 'RESTART':
         case 'GET_STARTED':
-            await chatbotService.handleGetStarted(sender_psid);
+            await chatbotService.sendWelcomeNewClient(sender_psid);
             break;
-        case 'ADMISSION_SCORE':
-            await chatbotService.handleSendAdmissionScore(sender_psid);
+        case "REGISTER_ADMISSIONS":
+            await chatbotService.sendRegisterAdmissions(sender_psid);
             break;
-        case 'ADDRESS':
-            await chatbotService.handleSendAddress(sender_psid);
+        case "MAJORS":
+            await chatbotService.sendMajor(sender_psid);
             break;
-        case 'OTHERS':
-            await chatbotService.handleSendOthers(sender_psid);
+        case "RECRUITMENT_METHOD":
+            await chatbotService.sendRecruitmentMethod(sender_psid);
+            break;
+        case "GO_BACK_RECRUITMENT_METHOD":
+            await chatbotService.goBackRecruitmentMethod(sender_psid);
+        case "COMPARE":
+            await chatbotService.sendCompare(sender_psid);
+            break;
+        case "SCHOLARSHIP_POLICY":
+            await chatbotService.sendScholarshipPolicy(sender_psid);
             break;
         default:
             response = { "text": `Opp! I don't know response with postback ${payload}` }

@@ -53,14 +53,14 @@ let getUserName = (sender_psid) => {
     })
 }
 
-let handleGetStarted = (sender_psid) => {
+let sendWelcomeNewClient = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let username = await getUserName(sender_psid);
             let response1 = {
-                "text": `Xin chào mừng bạn ${username} đến với tư vấn tuyển sinh trường Đại học Cần Thơ`
+                "text": `Xin chào bạn ${username}. Mình là Chatbot tư vấn tuyển sinh của trường Đại học Cần Thơ. Bạn có thể hỏi mình bằng cách chọn "Câu hỏi" ở dưới`
             }
-            let response2 = getStartedTemplate();
+            let response2 = sendMainContent();
             //send message
             await callSendAPI(sender_psid, response1);
 
@@ -76,7 +76,7 @@ let handleGetStarted = (sender_psid) => {
     })
 }
 
-let getStartedTemplate = () => {
+let sendMainContent = () => {
     let response = {
         "attachment": {
             "type": "template",
@@ -233,7 +233,7 @@ let handleSendOthers = (sender_psid) => {
 
 
 module.exports = {
-    handleGetStarted: handleGetStarted,
+    sendWelcomeNewClient: sendWelcomeNewClient,
     handleSendAdmissionScore: handleSendAdmissionScore,
     handleSendOthers: handleSendOthers,
     handleSendAddress: handleSendAddress,
