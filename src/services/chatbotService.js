@@ -53,19 +53,21 @@ let getUserName = (sender_psid) => {
     })
 }
 
-let sendWelcomeNewClient = (sender_psid) => {
+let handleGetStarted = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let username = await getUserName(sender_psid);
             let response1 = {
-                "text": `Xin chào bạn ${username}. Mình là Chatbot tư vấn tuyển sinh của trường Đại học Cần Thơ. Bạn có thể hỏi mình bằng cách chọn "Câu hỏi" ở dưới`
+                "text": `Xin chào mừng bạn ${username} đến với tư vấn tuyển sinh trường Đại học Cần Thơ`
             }
-            let response2 = sendMainContent();
+            let response2 = getStartedTemplate();
             //send message
             await callSendAPI(sender_psid, response1);
 
             //send generic template message
             await callSendAPI(sender_psid, response2);
+
+
 
             resolve('done');
         } catch (e) {
@@ -74,74 +76,35 @@ let sendWelcomeNewClient = (sender_psid) => {
     })
 }
 
-let sendMainContent = () => {
+let getStartedTemplate = () => {
     let response = {
         "attachment": {
             "type": "template",
             "payload": {
                 "template_type": "generic",
-                "elements": [
-                    {
-                        "title": "Đăng ký xét tuyển",
-                        "subtitle": "Bạn có đang thắc mắc về việc đăng ký xét tuyển ở trường CTU?",
-                        "image_url": ImageMainContent,
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Đăng ký xét tuyển",
-                                "payload": "REGISTER_ADMISSIONS"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "Phương thức tuyển sinh",
-                        "subtitle": "Bạn có phải đang không biết phương thức tuyển sinh đầu vào lần này như thế nào?",
-                        "image_url": ImageMainContent,
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Ngành tuyển sinh",
-                                "payload": "MAJORS"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "Phương thức tuyển sinh",
-                        "subtitle": "Bạn có phải đang không biết phương thức tuyển sinh đầu vào lần này như thế nào?",
-                        "image_url": ImageMainContent,
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Phương thức tuyển sinh",
-                                "payload": "RECRUITMENT_METHOD"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "Câu hỏi khác",
-                        "subtitle": "Chương trình chất lượng cao khác gì so với chương trình đại trà?",
-                        "image_url": ImageMainContent,
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Chi tiết",
-                                "payload": "COMPARE"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "Câu hỏi khác",
-                        "subtitle": "Chính sách học bổng của trường như thế nào?",
-                        "image_url": ImageMainContent,
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Chi tiết",
-                                "payload": "SCHOLARSHIP_POLICY"
-                            }
-                        ]
-                    }
-                ]
+                "elements": [{
+                    "title": "Bạn cần tư vấn những gì?",
+                    "subtitle": "Dưới đây là các lựa chọn cho bạn ",
+                    "image_url": ImageGetStarted,
+                    "buttons": [
+                        {
+                            "type": "postback",
+                            "title": "ĐIỂM TUYỂN SINH",
+                            "payload": "ADMISSION_SCORE",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "ĐỊA CHỈ TRƯỜNG",
+                            "payload": "ADDRESS",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "LỰA CHỌN KHÁC",
+                            "payload": "OTHERS",
+                        }
+
+                    ],
+                }]
             }
         }
     }
@@ -270,7 +233,7 @@ let handleSendOthers = (sender_psid) => {
 
 
 module.exports = {
-    sendWelcomeNewClient: sendWelcomeNewClient,
+    handleGetStarted: handleGetStarted,
     handleSendAdmissionScore: handleSendAdmissionScore,
     handleSendOthers: handleSendOthers,
     handleSendAddress: handleSendAddress,
