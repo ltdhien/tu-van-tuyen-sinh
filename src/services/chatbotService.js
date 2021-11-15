@@ -250,8 +250,31 @@ let handleSendOthers = (sender_psid) => {
 				- Trường hợp đăng ký nhiều phương thức cùng trường hoặc khác trường (trong đó có phương thức 2): khi trúng tuyển và xác nhận nhập học trước khi phương thức 2 công bố kết quả thì thí sinh không được xét tuyển theo phương thức 2 nữa; ngược lại, nếu không trúng tuyển hoặc chưa xác nhận nhập học thì vẫn được xét tuyển ở phương thức 2.
 				- Nếu một phương thức có nhiều đợt xét tuyển thì điểm trúng tuyển của đợt sau không được thấp hơn điểm trúng tuyển của đợt xét tuyển trước.`
             }
+            let response2 = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [
+                            {
+                                "title": "Câu hỏi",
+                                "subtitle": "Bạn đang thắc mắc những câu hỏi nào dưới đây?",
+								//"images_url": ImageMainContent,
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "Quay lại",
+                                        "payload": "GET_STARTED"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
             //send message
             await callSendAPI(sender_psid, response);
+            await callSendAPI(sender_psid, response2);
 
             resolve('done');
         } catch (e) {
